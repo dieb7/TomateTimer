@@ -8,5 +8,34 @@
 #include "TomateTimer.h"
 
 void TomateTimer::work() {
-
+	switch (_currentState) {
+	case IDLE_STATE:
+		if (startButton.isOn()) {
+			timer.setTimeOut(90000000);
+			timer.start();
+			_currentState = ACTIVE_STATE;
+		}
+		break;
+	case ACTIVE_STATE:
+		if (timer.timedOut()) {
+			if (count < 3) {
+				timer.setTimeOut(18000000);
+			} else {
+				timer.setTimeOut(72000000);
+			}
+			timer.start();
+			_currentState = BREAK_STATE;
+		}
+		break;
+	case BREAK_STATE:
+		if (timer.timedOut()) {
+			timer.setOff(true);
+			_currentState = IDLE_STATE;
+			totalCount++;
+			count = totalCount % 4;
+		}
+		break;
+	default:
+		break;
+	}
 }
