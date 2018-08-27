@@ -15,6 +15,8 @@
 class TomateTimer: public ranetos::ITask {
 	ranetos::Timer & timer;
 	ranetos::IGpio & startButton;
+	unsigned char count;
+	unsigned char totalCount;
 public:
 	enum State {
 		IDLE_STATE,
@@ -24,6 +26,8 @@ public:
 	TomateTimer(ranetos::Timer & timer, ranetos::IGpio & startButton):
 		timer(timer), startButton(startButton) {
 		_currentState = IDLE_STATE;
+		count = 0;
+		totalCount = 0;
 	}
 	virtual ~TomateTimer() {}
 
@@ -32,6 +36,23 @@ public:
 	State currentState() {
 		return _currentState;
 	}
+
+	unsigned char getCount() const {
+		return count;
+	}
+
+	void setCount(unsigned char count) {
+		this->count = count;
+	}
+
+	unsigned char getTotalCount() const {
+		return totalCount;
+	}
+
+	void setTotalCount(unsigned char totalCount) {
+		this->totalCount = totalCount;
+	}
+
 private:
 	State _currentState;
 };
