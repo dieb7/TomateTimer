@@ -57,7 +57,7 @@ TEST(TomateTimer, IdleToActive) {
 	tomateTimer->work();
 	CHECK(tomateTimer->currentState() == TomateTimer::ACTIVE_STATE);
 	CHECK_FALSE(timer->isOff());
-	LONGS_EQUAL(90000000, timer->getTimeOut());
+	LONGS_EQUAL(TomateTimer::ACTIVITY_LENGTH, timer->getTimeOut());
 }
 
 TEST(TomateTimer, ActiveToBreak) {
@@ -66,7 +66,7 @@ TEST(TomateTimer, ActiveToBreak) {
 
 	CHECK(tomateTimer->currentState() == TomateTimer::BREAK_STATE);
 	CHECK_FALSE(timer->isOff());
-	LONGS_EQUAL(18000000, timer->getTimeOut());
+	LONGS_EQUAL(TomateTimer::NORMAL_BREAK_LENGTH, timer->getTimeOut());
 }
 
 TEST(TomateTimer, BreakToIdle) {
@@ -111,7 +111,7 @@ TEST(TomateTimer, longBreakAfterFourActives) {
 
 	CHECK(tomateTimer->currentState() == TomateTimer::BREAK_STATE);
 	CHECK_FALSE(timer->isOff());
-	LONGS_EQUAL(72000000, timer->getTimeOut());
+	LONGS_EQUAL(TomateTimer::LONG_BREAK_LENGTH, timer->getTimeOut());
 }
 
 TEST(TomateTimer, countResetAfterLongBreak) {
