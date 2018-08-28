@@ -18,10 +18,9 @@ class TomateTimer: public ranetos::ITask {
 	unsigned char count;
 	unsigned char totalCount;
 public:
-	static const unsigned long ACTIVITY_LENGTH = 25 * 60 * 1000;
-	static const unsigned long NORMAL_BREAK_LENGTH = 5 * 60 * 1000;
-	static const unsigned long LONG_BREAK_LENGTH = 20 * 60 * 1000;
-
+	static const unsigned long ACTIVITY_LENGTH_MS = 1500000;
+	static const unsigned long NORMAL_BREAK_LENGTH_MS = 300000;
+	static const unsigned long LONG_BREAK_LENGTH_MS = 1200000;
 	enum State {
 		IDLE_STATE,
 		ACTIVE_STATE,

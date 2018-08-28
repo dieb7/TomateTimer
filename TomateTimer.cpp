@@ -11,7 +11,7 @@ void TomateTimer::work() {
 	switch (_currentState) {
 	case IDLE_STATE:
 		if (startButton.isOn()) {
-			timer.setTimeOut(ACTIVITY_LENGTH);
+			timer.setTimeOut(ACTIVITY_LENGTH_MS);
 			timer.start();
 			_currentState = ACTIVE_STATE;
 		}
@@ -19,9 +19,9 @@ void TomateTimer::work() {
 	case ACTIVE_STATE:
 		if (timer.timedOut()) {
 			if (count < 3) {
-				timer.setTimeOut(NORMAL_BREAK_LENGTH);
+				timer.setTimeOut(NORMAL_BREAK_LENGTH_MS);
 			} else {
-				timer.setTimeOut(LONG_BREAK_LENGTH);
+				timer.setTimeOut(LONG_BREAK_LENGTH_MS);
 			}
 			timer.start();
 			_currentState = BREAK_STATE;
